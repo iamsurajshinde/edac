@@ -1,0 +1,34 @@
+[
+  {
+    "questionId": 1,
+    "question": "Number of primitive data types in Java are?",
+    "optionA": 6,
+    "optionB": 7,
+    "optionC": 8,
+    "optionD": 9
+  },
+  {
+    "questionId": 2,
+    "question": "What is the size of float and double in java?",
+    "optionA": "32 & 64",
+    "optionB": "32 & 32",
+    "optionC": "64 & 64",
+    "optionD": "64 & 32"
+  },
+  {
+    "questionId": 3,
+    "question": "When an array is passed to a method, what does the method receive?",
+    "optionA": "The reference of the array Thenaaaaa",
+    "optionB": "A copy of the array",
+    "optionC": "Length of the array",
+    "optionD": "Copy of first element"
+  },
+  {
+    "questionId": 4,
+    "question": "Arrays in java are-",
+    "optionA": "Object reference",
+    "optionB": "objects",
+    "optionC": "Primitive data type Thedreferencedof the array Thenaaaa The reference of the array",
+    "optionD": "None"
+  }
+]

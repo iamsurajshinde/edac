@@ -1,0 +1,22 @@
+.profile-form {
+  width: 80%;
+  margin: auto;
+  padding-top: 2rem;
+}
+
+.row {
+  margin-bottom: 1rem;
+}
+
+.update_profille {
+  width: 40%;
+  margin: 1rem 4rem 0 auto;
+}
+
+.col-md-6 {
+  padding-right: 4rem;
+}
+
+.input-divider {
+  height: 10px;
+}

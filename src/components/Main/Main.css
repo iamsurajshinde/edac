@@ -1,0 +1,7 @@
+.main-container {
+  position: relative;
+  width: calc(100vw - 18rem);
+  left: 16rem;
+  top: 5rem;
+  padding: 0.5rem 1rem;
+}

@@ -1,0 +1,44 @@
+.header {
+  position: fixed;
+  z-index: 99;
+  background: #fff;
+  width: 100%;
+  display: inline-flex;
+  box-shadow: 0 4px 5px #00000033;
+}
+
+.brand {
+  position: relative;
+  font-size: 32px;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 5px #fdfdfd33;
+  width: 10rem;
+}
+
+.brand img {
+  width: 100%;
+}
+
+.profile {
+  align-items: center;
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  display: flex;
+}
+
+.profile button:hover {
+  transform: scale(1.1);
+}
+
+.profile button {
+  margin-left: 1rem;
+  outline: none;
+  background: none;
+  border: none;
+}
+
+.profile button.user {
+  margin-left: 0;
+}

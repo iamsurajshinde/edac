@@ -1,0 +1,23 @@
+.sidebar {
+  position: fixed;
+  top: 4.5rem;
+  left: 0;
+  height: 91vh;
+  width: 16rem;
+  list-style: none;
+  box-shadow: 4px 0 5px #00000033;
+  line-height: 2.5rem;
+  padding: 0;
+  background: #baaaff;
+}
+
+.sidebar li {
+  cursor: pointer;
+  padding: 0.5rem 2rem;
+  text-transform: uppercase;
+}
+
+.sidebar li:hover {
+  color: #fff;
+  background: #00000033;
+}

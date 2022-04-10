@@ -1,0 +1,9 @@
+.question {
+  padding: 5px;
+  margin-top: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.question-group input {
+  margin: 5px 7px;
+}
