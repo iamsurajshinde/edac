@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Test.css";
 import Questions from "./Question.json";
 import Question from "../Question/Question";
 import Subject from "../Subject/Subject";
 export default function Test(props) {
   const [selectedSubject, setSelectedSubject] = useState();
-
+  const [questions, setQuestions] = useState([]);
   const answers = {};
   const setAns = (data) => {
     answers[data.questionId] = data;
     console.log(answers);
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div className="test-container">
@@ -21,7 +23,8 @@ export default function Test(props) {
         />
       )}
       {selectedSubject &&
-        Questions.map((q, i) => {
+        questions.length !== 0 &&
+        questions.map((q, i) => {
           return (
             <Question
               key={i}

@@ -11,7 +11,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const user = localStorage.getItem("edacuser");
+  if (user) window.location.href = "/home";
   const handleChange = (e) => {
     if (e.target.name === "email") setEmail(e.target.value);
     else if (e.target.name === "password") setPassword(e.target.value);
@@ -19,8 +20,6 @@ export default function Login() {
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    if (email === "" || password === "") {
-    }
     let encryptPass = cryptoJs.AES.encrypt(password, "KEY").toString();
     console.log(email, " ", password, " ", encryptPass);
     setIsLoading(true);
@@ -29,6 +28,7 @@ export default function Login() {
         if (res.status === 401) {
           toast.error("Invalid Email & Password!");
         } else if (res.status === 200) {
+          localStorage.setItem("user", res.data);
           window.location.href = "/home";
         }
         setIsLoading(false);
@@ -38,8 +38,6 @@ export default function Login() {
         console.log("error => ", err);
         setIsLoading(false);
       });
-
-    window.location.href = "/home";
   };
 
   return (

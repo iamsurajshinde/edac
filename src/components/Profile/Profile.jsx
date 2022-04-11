@@ -15,19 +15,23 @@ export default function Profile(props) {
   const { setIsLoading } = useContext(CommonContext);
   const [firstName, setFirstName] = useState(profile?.firstName);
   const [lastName, setLastName] = useState(profile?.lastName);
-  const [mobile, setMobile] = useState(profile?.firstName);
-  const [address, setAddress] = useState(profile?.firstName);
-  const [sscYear, setSscYear] = useState(profile?.firstName);
-  const [sscMarks, setSscMarks] = useState(profile?.firstName);
-  const [hscYear, setHscYear] = useState(profile?.firstName);
-  const [hscMarks, setHscMarks] = useState(profile?.firstName);
-  const [graduationYear, setGraduationYear] = useState(profile?.firstName);
-  const [graduationMarks, setGraduationMarks] = useState(profile?.firstName);
+  const [mobile, setMobile] = useState(profile?.mobile);
+  const [address, setAddress] = useState(profile?.addressLine1);
+  const [sscYear, setSscYear] = useState(profile?.ssc?.split("-")[0]);
+  const [sscMarks, setSscMarks] = useState(profile?.ssc?.split("-")[1]);
+  const [hscYear, setHscYear] = useState(profile?.hsc?.split("-")[0]);
+  const [hscMarks, setHscMarks] = useState(profile?.hsc?.split("-")[1]);
+  const [graduationYear, setGraduationYear] = useState(
+    profile?.graduation?.split("-")[0]
+  );
+  const [graduationMarks, setGraduationMarks] = useState(
+    profile?.graduation?.split("-")[1]
+  );
   const [postGraduationYear, setPostGraduationYear] = useState(
-    profile?.firstName
+    profile?.postGraduation?.split("-")[0]
   );
   const [postGraduationMarks, setPostGraduationMarks] = useState(
-    profile?.firstName
+    profile?.postGraduation?.split("-")[1]
   );
 
   const handleSubmit = (e) => {
@@ -36,15 +40,11 @@ export default function Profile(props) {
       firstName,
       lastName,
       mobile,
-      address,
-      sscMarks,
-      sscYear,
-      hscYear,
-      hscMarks,
-      graduationYear,
-      graduationMarks,
-      postGraduationYear,
-      postGraduationMarks,
+      addressLine1: address,
+      ssc: sscYear + "-" + sscMarks,
+      hsc: hscYear + "-" + hscMarks,
+      graduation: graduationYear + "-" + graduationMarks,
+      postGraduation: postGraduationYear + "-" + postGraduationMarks,
     };
     setIsLoading(true);
     updateProfile(profile)
@@ -104,6 +104,8 @@ export default function Profile(props) {
             name="address"
             className="form-control"
             rows={4}
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
           ></textarea>
         </div>
       </div>

@@ -1,6 +1,10 @@
 import axios from "axios";
 import API from "./API";
 
+async function getSubjects() {
+  return await axios.get(API.BASE_URL + API.SUBJECTS);
+}
+
 async function getStudyMaterial(subjectId) {
   return await axios.get(API.BASE_URL + API.MATERIALS + "/" + subjectId);
 }
@@ -30,6 +34,7 @@ async function updateProfile(profile) {
 }
 
 export {
+  getSubjects,
   getStudyMaterial,
   getPerformance,
   getPracticeQuestions,

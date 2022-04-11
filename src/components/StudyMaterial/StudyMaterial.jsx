@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useMemo } from "react";
+import { useEffect } from "react";
+import { getStudyMaterial } from "../../services/studentService";
 import Subject from "../Subject/Subject";
 import Items from "./Items";
 import "./StudyMaterial.css";
 export default function StudyMaterial(props) {
   const [selectedSubject, setSelectedSubject] = useState();
-  const links = [
+  let links = [
     {
       subjectId: selectedSubject,
       name: "Sample Pdf",
@@ -18,6 +21,21 @@ export default function StudyMaterial(props) {
       url: "http://www.africau.edu/images/default/sample.pdf",
     },
   ];
+
+  useEffect(() => {
+    links = useMemo(() => getMaterial(selectedSubject), [selectedSubject]);
+  }, [selectedSubject]);
+
+  function getMaterial(subjectId) {
+    getStudyMaterial(subjectId)
+      .then(({ data }) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+        return [];
+      });
+  }
 
   return (
     <div className="test-container">

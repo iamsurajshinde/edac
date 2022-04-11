@@ -1,11 +1,30 @@
 import React, { useState } from "react";
 import Question from "../Question/Question";
-import Questions from "./Question.json";
+// import Questions from "./Question.json";
 import "./PracticeTest.css";
 import Subject from "../Subject/Subject";
+import Performance from "../Performance/Performance";
+import {
+  checkPracticeQuestions,
+  getPracticeQuestions,
+} from "../../services/studentService";
+import { toast } from "react-toastify";
 export default function PracticeTest(props) {
   const [selectedSubject, setSelectedSubject] = useState();
   const [isTestSubmitted, setIsTestSubmitted] = useState(false);
+  const [performance, setPerformance] = useState([]);
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    getPracticeQuestions(selectedSubject)
+      .then(({ data }) => {
+        setQuestions(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Internal Server Error!!");
+      });
+  }, [selectedSubject]);
 
   const answers = {};
   const setAns = (data) => {
@@ -15,7 +34,19 @@ export default function PracticeTest(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsTestSubmitted()
+    let data = {
+      subjectId: selectedSubject.subjectId,
+      questionIds: answers,
+    };
+    checkPracticeQuestions(data)
+      .then(({ data }) => {
+        setIsTestSubmitted(true);
+        setPerformance(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Internal Server Error. Try again!!");
+      });
   };
   return (
     <div className="test-container">
@@ -27,7 +58,7 @@ export default function PracticeTest(props) {
       )}
       {selectedSubject && (
         <form onSubmit={handleSubmit}>
-          {Questions.map((q, i) => {
+          {questions.map((q, i) => {
             return (
               <Question
                 key={i}
@@ -46,7 +77,9 @@ export default function PracticeTest(props) {
           </div>
         </form>
       )}
-      {isTestSubmitted && <Performance />}
+      {isTestSubmitted && (
+        <Performance subjects={props.subjects} performance={performance} />
+      )}
     </div>
   );
 }
